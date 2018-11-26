@@ -1,4 +1,4 @@
-﻿  Aeroplane.cpp
-c:\users\b4032180\desktop\2.hierachy - plane game\hierarchy\aeroplane.cpp(67): warning C4101: 'mForwardMatrix': unreferenced local variable
-c:\users\b4032180\desktop\2.hierachy - plane game\hierarchy\aeroplane.cpp(68): warning C4101: 'mInverseWorld': unreferenced local variable
-  Hierarchy.vcxproj -> C:\Users\b4032180\Desktop\2.Hierachy - Plane Game\Debug\Hierarchy.exe
+﻿  Application.cpp
+  Bullet.cpp
+  Generating Code...
+  Hierarchy.vcxproj -> F:\Repositories\Uni - Projects\Plane_Assignment\Debug\Hierarchy.exe

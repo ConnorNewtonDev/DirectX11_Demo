@@ -11,6 +11,7 @@
 //*********************************************************************************************
 
 #include "Application.h"
+#include "Bullet.h"
 
 __declspec(align(16)) class Aeroplane
 {
@@ -63,6 +64,9 @@ __declspec(align(16)) class Aeroplane
 	XMMATRIX m_mCamWorldMatrix; // Camera's world transformation matrix
 
 	bool m_bGunCam;
+
+
+	Bullet* m_pBullet;
 
   public:
 	float GetXPosition(void) { return m_v4Pos.x; }

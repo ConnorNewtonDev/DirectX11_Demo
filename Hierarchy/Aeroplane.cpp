@@ -197,8 +197,14 @@ void Aeroplane::Update(bool bPlayerControl)
 					m_v4Rot.z = XMConvertToRadians(0);
 			}
 		}
+		if (GetAsyncKeyState('R') && 0x8000)
+		{
+			m_pBullet = new Bullet(m_mGunWorldMatrix);
+			m_pBullet->LoadResources();
+		}
 	} // End of if player control
 
+	
 	// Apply a forward thrust and limit to a maximum speed of 1
 	m_fSpeed += 0.001f;
 
