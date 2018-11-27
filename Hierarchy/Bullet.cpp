@@ -22,7 +22,6 @@ void Bullet::Update()
 {
 	//MoveForward();
 	UpdateMatrices();
-	Draw();
 }
 
 void Bullet::Draw(void)
@@ -69,7 +68,7 @@ void Bullet::UpdateMatrices(void)
 	mRotX = XMMatrixRotationX(m_v4Rot.x);
 	mRotY = XMMatrixRotationY(m_v4Rot.y);
 	mRotZ = XMMatrixRotationZ(m_v4Rot.z);
-	mTrans = XMMatrixTranslationFromVector(XMLoadFloat4(&m_v4Pos));
+	mTrans = XMMatrixTranslationFromVector(DirectX::XMLoadFloat4(&m_v4Pos));
 	// Then concatenate the matrices to calculate m_mBulletWorldMatrix
 	m_mBulletWorldMatrix = mRotZ * mRotX * mRotY * mTrans;
 

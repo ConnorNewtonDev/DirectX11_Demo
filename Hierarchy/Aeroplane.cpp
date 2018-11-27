@@ -133,12 +133,14 @@ void Aeroplane::UpdateMatrices(void)
 
 void Aeroplane::Update(bool bPlayerControl)
 {
-	// DON'T DO THIS UNTIL YOu HAVE COMPLETED THE FUNCTION ABOVE
+	//---- Player Controls ----//
 	if(bPlayerControl)
 	{	
 		if (GetAsyncKeyState('R') && 0x8000)
 		{
-			m_pBullet = new Bullet(m_mGunWorldMatrix);
+			m_pBullet = new Bullet(m_mGunWorldMatrix);			
+			//bullets.push_back(m_pBullet);
+
 		}
 		//----------- ALTITUDE -----------//
 		if (GetAsyncKeyState('Q') & 0x8000)		// Step 1: Make the plane pitch upwards when you press "Q" and return to level when released  [Max Pitch = 60deg]
@@ -208,7 +210,7 @@ void Aeroplane::Update(bool bPlayerControl)
 	} // End of if player control
 
 	
-	// Apply a forward thrust and limit to a maximum speed of 1
+	// Forward Momentum
 	m_fSpeed += 0.001f;
 
 	if(m_fSpeed > 1)
@@ -221,13 +223,14 @@ void Aeroplane::Update(bool bPlayerControl)
 	// Tilt gun up and down as turret rotates
 	m_v4GunRot.x = (sin((float)XMConvertToRadians(m_v4TurretRot.y * 4.0f)) * 10.0f) - 10.0f;
 
+
 	UpdateMatrices();
 
 	// Move Forward
-	XMVECTOR vCurrPos = XMLoadFloat4(&m_v4Pos);
+	XMVECTOR vCurrPos = DirectX::XMLoadFloat4(&m_v4Pos);
 	vCurrPos += m_vForwardVector * m_fSpeed;
 	XMStoreFloat4(&m_v4Pos, vCurrPos);
-
+	
 	if(m_pBullet != NULL)
 		m_pBullet->Update();
 }
@@ -262,4 +265,6 @@ void Aeroplane::Draw(void)
 	Application::s_pApp->SetWorldMatrix(m_mGunWorldMatrix);
 	s_pGunMesh->Draw();
 
+	if(m_pBullet != NULL)
+		m_pBullet->Draw();
 }

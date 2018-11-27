@@ -12,6 +12,8 @@
 
 #include "Application.h"
 #include "Bullet.h"
+#include <list>
+#include <iostream>
 
 __declspec(align(16)) class Aeroplane
 {
@@ -22,6 +24,7 @@ __declspec(align(16)) class Aeroplane
 	static void LoadResources(void); // Only load the resources once for all instances
 	static void ReleaseResources(void); // Only free the resources once for all instances
 	void Update(bool bPlayerControl); // Player only has control of plane when flag is set
+	void UpdateBullets();
 	void Draw(void);
 
 	void SetWorldPosition(float fX, float fY, float fZ);
@@ -66,7 +69,8 @@ __declspec(align(16)) class Aeroplane
 	bool m_bGunCam;
 
 
-	Bullet* m_pBullet;
+	Bullet* m_pBullet = NULL;	
+	//std::list<Bullet*> bullets = std::list<Bullet*>(5);
 
   public:
 	float GetXPosition(void) { return m_v4Pos.x; }
@@ -76,7 +80,7 @@ __declspec(align(16)) class Aeroplane
 	XMFLOAT4 GetCameraPosition(void)
 	{
 		XMFLOAT4 v4Pos;
-		XMStoreFloat4(&v4Pos, m_vCamWorldPos);
+		DirectX::XMStoreFloat4(&v4Pos, m_vCamWorldPos);
 		return v4Pos;
 	}
 	XMFLOAT4 GetPosition(void) { return m_v4Pos; }
