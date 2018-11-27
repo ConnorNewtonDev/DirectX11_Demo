@@ -27,6 +27,7 @@ Aeroplane::Aeroplane(float fX, float fY, float fZ, float fRotY)
 	m_mPropWorldMatrix = XMMatrixIdentity();
 	m_mTurretWorldMatrix = XMMatrixIdentity();
 	m_mGunWorldMatrix = XMMatrixIdentity();
+	m_mBulletSpawnMatrix = XMMatrixIdentity();
 	m_mCamWorldMatrix = XMMatrixIdentity();
 
 	//Plane Rot & Pos
@@ -110,6 +111,7 @@ void Aeroplane::UpdateMatrices(void)
 	// Parent the gun to the turret
 	mLocalGun = mRotX * mRotY * mRotZ * mTrans;
 	m_mGunWorldMatrix = mLocalGun * mLocalTurret * m_mWorldMatrix;
+	m_mBulletSpawnMatrix = mRotX * mRotY * mTrans * mLocalTurret;
 
 
 	// Calculate m_mCameraWorldMatrix for camera based on Euler rotation angles and position data.
@@ -140,20 +142,17 @@ void Aeroplane::Update(bool bPlayerControl)
 		{
 			m_pBullet = new Bullet(m_mGunWorldMatrix);			
 			//bullets.push_back(m_pBullet);
-
 		}
 		//----------- ALTITUDE -----------//
-		if (GetAsyncKeyState('Q') & 0x8000)		// Step 1: Make the plane pitch upwards when you press "Q" and return to level when released  [Max Pitch = 60deg]
+		if (GetAsyncKeyState('Q') & 0x8000)
 		{
 			if (XMConvertToDegrees(m_v4Rot.x) < 60)
 				m_v4Rot.x += XMConvertToRadians(1);
-
 		}
-		else if (GetAsyncKeyState('A') & 0x8000)	// Step 2: Make the plane pitch downwards when you press "A" and return to level when released [Min Pitch = -60deg]
-		{			// You can also impose a take off speed of 0.5 if you like
+		else if (GetAsyncKeyState('A') & 0x8000)
+		{
 			if (XMConvertToDegrees(m_v4Rot.x) > -60)
 				m_v4Rot.x -= XMConvertToRadians(1);
-
 		}
 		else if(XMConvertToDegrees(m_v4Rot.x) != 0)			// If no input on "Q" or "A" slowly return to 0
 		{
@@ -226,12 +225,17 @@ void Aeroplane::Update(bool bPlayerControl)
 
 	UpdateMatrices();
 
-	// Move Forward
-	XMVECTOR vCurrPos = DirectX::XMLoadFloat4(&m_v4Pos);
-	vCurrPos += m_vForwardVector * m_fSpeed;
-	XMStoreFloat4(&m_v4Pos, vCurrPos);
+	//// Move Forward
+	//XMVECTOR vCurrPos = DirectX::XMLoadFloat4(&m_v4Pos);
+	//vCurrPos += m_vForwardVector * m_fSpeed;
+	//XMStoreFloat4(&m_v4Pos, vCurrPos);
 	
-	if(m_pBullet != NULL)
+	UpdateBullets();
+}
+
+void Aeroplane::UpdateBullets()
+{
+	if (m_pBullet != NULL)
 		m_pBullet->Update();
 }
 

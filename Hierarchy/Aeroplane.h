@@ -59,6 +59,7 @@ __declspec(align(16)) class Aeroplane
 	XMFLOAT4 m_v4GunRot; // Local rotation angles
 	XMFLOAT4 m_v4GunOff; // Local offset
 	XMMATRIX m_mGunWorldMatrix; // Gun's world transformation matrix
+	XMMATRIX m_mBulletSpawnMatrix; // Gun's world transformation matrix
 
 	XMFLOAT4 m_v4CamRot; // Local rotation angles
 	XMFLOAT4 m_v4CamOff; // Local offset

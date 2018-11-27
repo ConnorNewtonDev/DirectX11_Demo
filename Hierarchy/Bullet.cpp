@@ -11,7 +11,6 @@ Bullet::Bullet(XMMATRIX m_mGunWorldMatrix)
 	SetWorldPosition(m_mGunWorldMatrix);
 	fBulletSpeed = 0.5f;
 
-	//m_v4Pos = XMFLOAT4(0.0f, 2.0f, 0.0f, 0.0f);
 }
 
 Bullet::~Bullet()
@@ -20,7 +19,7 @@ Bullet::~Bullet()
 
 void Bullet::Update()
 {
-	//MoveForward();
+	MoveForward();
 	UpdateMatrices();
 }
 
@@ -45,7 +44,7 @@ void Bullet::ReleaseResources(void)
 void Bullet::MoveForward()
 {
 	XMVECTOR vCurPos = XMLoadFloat4(&m_v4Pos);
-	vCurPos = m_vForwardVector * fBulletSpeed;
+	vCurPos += m_vForwardVector * fBulletSpeed;
 	XMStoreFloat4(&m_v4Pos, vCurPos);
 }
 
@@ -68,9 +67,9 @@ void Bullet::UpdateMatrices(void)
 	mRotX = XMMatrixRotationX(m_v4Rot.x);
 	mRotY = XMMatrixRotationY(m_v4Rot.y);
 	mRotZ = XMMatrixRotationZ(m_v4Rot.z);
-	mTrans = XMMatrixTranslationFromVector(DirectX::XMLoadFloat4(&m_v4Pos));
+	mTrans = XMMatrixTranslationFromVector(XMLoadFloat4(&m_v4Pos));
 	// Then concatenate the matrices to calculate m_mBulletWorldMatrix
-	m_mBulletWorldMatrix = mRotZ * mRotX * mRotY * mTrans;
+	m_mBulletWorldMatrix = mRotX * mRotY * mRotZ * mTrans;
 
 	m_vForwardVector = XMVector3Cross(m_mBulletWorldMatrix.r[0], m_mBulletWorldMatrix.r[1]);
 }
