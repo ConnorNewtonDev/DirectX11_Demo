@@ -7,8 +7,11 @@ bool Bullet::s_bResourcesReady = false;
 //---- Public ----//
 Bullet::Bullet(XMMATRIX m_mGunWorldMatrix)
 {
+	LoadResources();
 	SetWorldPosition(m_mGunWorldMatrix);
 	fBulletSpeed = 0.5f;
+
+	//m_v4Pos = XMFLOAT4(0.0f, 2.0f, 0.0f, 0.0f);
 }
 
 Bullet::~Bullet()
@@ -17,8 +20,9 @@ Bullet::~Bullet()
 
 void Bullet::Update()
 {
-	MoveForward();
+	//MoveForward();
 	UpdateMatrices();
+	Draw();
 }
 
 void Bullet::Draw(void)

@@ -15,11 +15,14 @@ CommonMesh* Aeroplane::s_pPropMesh = NULL;
 CommonMesh* Aeroplane::s_pTurretMesh = NULL;
 CommonMesh* Aeroplane::s_pGunMesh = NULL;
 
+
 bool Aeroplane::s_bResourcesReady = false;
 float temp = 0;
 
 Aeroplane::Aeroplane(float fX, float fY, float fZ, float fRotY)
 {
+	 m_pBullet = NULL;
+
 	m_mWorldMatrix = XMMatrixIdentity();
 	m_mPropWorldMatrix = XMMatrixIdentity();
 	m_mTurretWorldMatrix = XMMatrixIdentity();
@@ -133,6 +136,10 @@ void Aeroplane::Update(bool bPlayerControl)
 	// DON'T DO THIS UNTIL YOu HAVE COMPLETED THE FUNCTION ABOVE
 	if(bPlayerControl)
 	{	
+		if (GetAsyncKeyState('R') && 0x8000)
+		{
+			m_pBullet = new Bullet(m_mGunWorldMatrix);
+		}
 		//----------- ALTITUDE -----------//
 		if (GetAsyncKeyState('Q') & 0x8000)		// Step 1: Make the plane pitch upwards when you press "Q" and return to level when released  [Max Pitch = 60deg]
 		{
@@ -197,11 +204,7 @@ void Aeroplane::Update(bool bPlayerControl)
 					m_v4Rot.z = XMConvertToRadians(0);
 			}
 		}
-		if (GetAsyncKeyState('R') && 0x8000)
-		{
-			m_pBullet = new Bullet(m_mGunWorldMatrix);
-			m_pBullet->LoadResources();
-		}
+
 	} // End of if player control
 
 	
@@ -224,6 +227,9 @@ void Aeroplane::Update(bool bPlayerControl)
 	XMVECTOR vCurrPos = XMLoadFloat4(&m_v4Pos);
 	vCurrPos += m_vForwardVector * m_fSpeed;
 	XMStoreFloat4(&m_v4Pos, vCurrPos);
+
+	if(m_pBullet != NULL)
+		m_pBullet->Update();
 }
 
 void Aeroplane::LoadResources(void)
@@ -255,4 +261,5 @@ void Aeroplane::Draw(void)
 
 	Application::s_pApp->SetWorldMatrix(m_mGunWorldMatrix);
 	s_pGunMesh->Draw();
+
 }
