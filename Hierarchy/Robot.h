@@ -2,7 +2,10 @@
 #define ROBOT_H
 
 #include "Application.h"
-
+#include "Node.h"
+#include <list>
+#include <vector>
+#include <iostream>
 
 __declspec(align(16)) class Robot
 {
@@ -12,10 +15,10 @@ public:
 
 	static void LoadResources(void); // Only load the resources once for all instances
 	static void ReleaseResources(void); // Only free the resources once for all instances
-	void Update(); // Player only has control of plane when flag is set
+	void LoadNodes();
 	void Draw(void);
-
 	void SetWorldPosition(float fX, float fY, float fZ);
+	void Update(); // Player only has control of plane when flag is set
 private:
 	void UpdateMatrices(void);
 
@@ -26,7 +29,10 @@ private:
 
 	
 public:
-	
+	std::vector<Node> robotNodes;
+	std::string nodeFilePath;
+
+
 	void* operator new(size_t i)
 	{
 		return _mm_malloc(i, 16);
@@ -38,4 +44,6 @@ public:
 	}
 
 };
+
+
 #endif

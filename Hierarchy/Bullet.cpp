@@ -31,7 +31,7 @@ void Bullet::Draw(void)
 
 void Bullet::LoadResources(void)
 {
-	s_pBulletMesh = CommonMesh::LoadFromXFile(Application::s_pApp, "Resources/Plane/gun.x");
+	s_pBulletMesh = CommonMesh::LoadFromXFile(Application::s_pApp, "Resources/Bullet/bullet.x");
 }
 
 void Bullet::ReleaseResources(void)

@@ -1,5 +1,8 @@
-﻿  Aeroplane.cpp
-f:\repo\plane_assignment\hierarchy\aeroplane.cpp(71): warning C4101: 'mForwardMatrix': unreferenced local variable
-f:\repo\plane_assignment\hierarchy\aeroplane.cpp(72): warning C4101: 'mInverseWorld': unreferenced local variable
-f:\repo\plane_assignment\hierarchy\aeroplane.cpp(143): warning C4316: 'Bullet': object allocated on the heap may not be aligned 16
-  Hierarchy.vcxproj -> F:\Repo\Plane_Assignment\Debug\Hierarchy.exe
+﻿  Node.cpp
+f:\repositories\uni - projects\plane_assignment\hierarchy\node.cpp(38): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\node.cpp(65): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\node.cpp(89): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\node.cpp(98): warning C4100: 'offZ': unreferenced formal parameter
+f:\repositories\uni - projects\plane_assignment\hierarchy\node.cpp(98): warning C4100: 'offY': unreferenced formal parameter
+f:\repositories\uni - projects\plane_assignment\hierarchy\node.cpp(98): warning C4100: 'offX': unreferenced formal parameter
+  Hierarchy.vcxproj -> F:\Repositories\Uni - Projects\Plane_Assignment\Debug\Hierarchy.exe
