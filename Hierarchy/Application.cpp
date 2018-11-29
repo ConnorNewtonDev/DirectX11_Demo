@@ -22,9 +22,8 @@ bool Application::HandleStart()
 	m_bWireframe = false;
 
 	m_pHeightMap = new HeightMap("Resources/heightmap.bmp", 2.0f);
-	m_pAeroplane = new Aeroplane(0.0f, 3.5f, 0.0f, 105.0f);
-	m_pRobot = new Robot(0.0f, 3.5f, 0.0f, 105.0f);
-
+	m_pAeroplane = new Aeroplane(0.0f, 5.0f, 0.0f, 105.0f);
+	m_pRobot = new Robot(0.0f,5.0f ,0.0f , 105.0f);
 	m_pAeroplane->LoadResources();
 
 	m_cameraZ = 50.0f;
@@ -48,6 +47,8 @@ void Application::HandleStop()
 	delete m_pHeightMap;
 	Aeroplane::ReleaseResources();
 	delete m_pAeroplane;
+	m_pRobot->ReleaseResources();
+	delete m_pRobot;
 
 	this->CommonApp::HandleStop();
 }

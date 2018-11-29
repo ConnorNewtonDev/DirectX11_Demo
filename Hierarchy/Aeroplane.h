@@ -12,6 +12,7 @@
 
 #include "Application.h"
 #include "Bullet.h"
+#include "NodeT.h"
 #include <list>
 #include <iostream>
 
@@ -33,9 +34,9 @@ __declspec(align(16)) class Aeroplane
 	void UpdateMatrices(void);
 
 	static CommonMesh* s_pPlaneMesh; // Only one plane mesh for all instances
-	static CommonMesh* s_pPropMesh; // Only one propellor mesh for all instances
-	static CommonMesh* s_pTurretMesh; // Only one turret mesh for all instances
-	static CommonMesh* s_pGunMesh; // Only one gun mesh for all instances
+	//static CommonMesh* s_pPropMesh; // Only one propellor mesh for all instances
+	//static CommonMesh* s_pTurretMesh; // Only one turret mesh for all instances
+	//static CommonMesh* s_pGunMesh; // Only one gun mesh for all instances
 
 	static bool s_bResourcesReady;
 
@@ -47,18 +48,7 @@ __declspec(align(16)) class Aeroplane
 
 	XMMATRIX m_mWorldTrans; // World translation matrix
 	XMMATRIX m_mWorldMatrix; // World transformation matrix
-
-	XMFLOAT4 m_v4PropRot; // Local rotation angles
-	XMFLOAT4 m_v4PropOff; // Local offset
-	XMMATRIX m_mPropWorldMatrix; // Propeller's world transformation matrix
-
-	XMFLOAT4 m_v4TurretRot; // Local rotation angles
-	XMFLOAT4 m_v4TurretOff; // Local offset
-	XMMATRIX m_mTurretWorldMatrix; // Turret's world transformation matrix
-
-	XMFLOAT4 m_v4GunRot; // Local rotation angles
-	XMFLOAT4 m_v4GunOff; // Local offset
-	XMMATRIX m_mGunWorldMatrix; // Gun's world transformation matrix
+	
 	XMMATRIX m_mBulletSpawnMatrix; // Gun's world transformation matrix
 
 	XMFLOAT4 m_v4CamRot; // Local rotation angles
@@ -71,6 +61,9 @@ __declspec(align(16)) class Aeroplane
 
 
 	Bullet* m_pBullet = NULL;	
+	NodeT* pTurret = NULL;
+	NodeT* pGun = NULL;
+	NodeT* pProp = NULL;
 	//std::list<Bullet*> bullets = std::list<Bullet*>(5);
 
   public:

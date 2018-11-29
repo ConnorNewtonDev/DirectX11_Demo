@@ -2,7 +2,7 @@
 #define ROBOT_H
 
 #include "Application.h"
-#include "Node.h"
+#include "NodeT.h"
 #include <list>
 #include <vector>
 #include <iostream>
@@ -14,8 +14,8 @@ public:
 	~Robot(void);
 
 	static void LoadResources(void); // Only load the resources once for all instances
-	static void ReleaseResources(void); // Only free the resources once for all instances
-	void LoadNodes();
+	void ReleaseResources(void); // Only free the resources once for all instances
+	void LoadNodes(float fX, float fY, float fZ, float fRotY);
 	void Draw(void);
 	void SetWorldPosition(float fX, float fY, float fZ);
 	void Update(); // Player only has control of plane when flag is set
@@ -29,7 +29,13 @@ private:
 
 	
 public:
-	std::vector<Node> robotNodes;
+	XMFLOAT4 m_v4Rot; // Euler rotation angles
+	XMFLOAT4 m_v4Pos; // World position
+	XMVECTOR m_vForwardVector; // Forward Vector for Plane
+	XMMATRIX m_mWorldMatrix; // World transformation matrix
+
+	NodeT* pelvis = NULL;
+	std::vector<NodeT*> robotNodes;
 	std::string nodeFilePath;
 
 
