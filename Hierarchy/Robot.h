@@ -35,6 +35,21 @@ public:
 	XMMATRIX m_mWorldMatrix; // World transformation matrix
 
 	NodeT* pelvis = NULL;
+	NodeT* body = NULL;
+	NodeT* left_shoulder = NULL;
+	NodeT* left_elbow = NULL;
+	NodeT* left_wrist = NULL;
+	NodeT* right_shoulder = NULL;
+	NodeT* right_elbow = NULL;
+	NodeT* right_wrist = NULL;
+	NodeT* neck = NULL;
+	NodeT* left_hip = NULL;
+	NodeT* left_knee = NULL;
+	NodeT* left_ankle = NULL;
+	NodeT* right_hip = NULL;
+	NodeT* right_knee = NULL;
+	NodeT* right_ankle = NULL;
+
 	std::vector<NodeT*> robotNodes;
 	std::string nodeFilePath;
 

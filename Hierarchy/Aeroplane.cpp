@@ -197,7 +197,7 @@ void Aeroplane::Update(bool bPlayerControl)
 	// Move Forward
 	XMVECTOR vCurrPos = DirectX::XMLoadFloat4(&m_v4Pos);
 	vCurrPos += m_vForwardVector * m_fSpeed;
-	XMStoreFloat4(&m_v4Pos, vCurrPos);
+	//XMStoreFloat4(&m_v4Pos, vCurrPos);
 	
 	UpdateBullets();
 }

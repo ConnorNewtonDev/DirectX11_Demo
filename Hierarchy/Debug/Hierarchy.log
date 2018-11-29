@@ -1,18 +1,2 @@
-﻿  Aeroplane.cpp
-f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(31): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(33): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(35): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(62): warning C4101: 'mForwardMatrix': unreferenced local variable
-f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(61): warning C4101: 'mLocalTurret': unreferenced local variable
-f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(63): warning C4101: 'mInverseWorld': unreferenced local variable
-f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(61): warning C4101: 'mLocalGun': unreferenced local variable
-f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(112): warning C4316: 'Bullet': object allocated on the heap may not be aligned 16
-  Application.cpp
-  NodeT.cpp
-  Robot.cpp
-f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(26): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(46): warning C4100: 'fZ': unreferenced formal parameter
-f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(46): warning C4100: 'fY': unreferenced formal parameter
-f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(46): warning C4100: 'fX': unreferenced formal parameter
-  Generating Code...
+﻿  NodeT.cpp
   Hierarchy.vcxproj -> F:\Repositories\Uni - Projects\Plane_Assignment\Debug\Hierarchy.exe
