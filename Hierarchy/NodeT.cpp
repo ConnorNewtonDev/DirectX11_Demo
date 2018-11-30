@@ -3,7 +3,8 @@
 
 NodeT::NodeT(float fX, float fY, float fZ, float fRotY, std::string filePath)
 {
-	LoadResources(filePath);
+	if (filePath != "")
+		LoadResources(filePath);
 
 	m_v4Rot = XMFLOAT4(0.0f, fRotY, 0.0f, 0.0f);
 	m_v4Pos = XMFLOAT4(fX, fY, fZ, 0.0f);
@@ -16,6 +17,7 @@ NodeT::~NodeT()
 
 void NodeT::LoadResources(std::string filePath)
 {
+
 	const char* path = filePath.c_str();
 	s_pNodeMesh = CommonMesh::LoadFromXFile(Application::s_pApp, path);
 }

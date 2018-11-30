@@ -92,10 +92,14 @@
     <ClCompile Include="HeightMap.cpp" />
     <ClCompile Include="NodeT.cpp" />
     <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="XMLParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.vcxproj">
       <Project>{f7afe374-3c54-40f7-b52c-13fc8877b478}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\tinyxml2\tinyxml2.vcxproj">
+      <Project>{1f53ed40-fb6f-33e6-b237-9b69150cd1ad}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +109,7 @@
     <ClInclude Include="HeightMap.h" />
     <ClInclude Include="NodeT.h" />
     <ClInclude Include="Robot.h" />
+    <ClInclude Include="XMLParser.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotData.json" />

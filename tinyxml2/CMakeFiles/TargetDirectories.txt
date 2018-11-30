@@ -1,0 +1,11 @@
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/NightlyMemoryCheck.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/Experimental.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/Continuous.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/Nightly.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/xmltest.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/tinyxml2.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/uninstall.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/INSTALL.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/RUN_TESTS.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/ALL_BUILD.dir
+C:/Users/Connor/Desktop/tinyxml2/CMakeFiles/ZERO_CHECK.dir

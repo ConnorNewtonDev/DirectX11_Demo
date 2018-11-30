@@ -1,2 +1,25 @@
-﻿  NodeT.cpp
+﻿  Robot.cpp
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.h(37): warning C4324: 'Robot': structure was padded due to alignment specifier
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(25): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(34): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(37): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(40): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(43): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(46): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(49): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(52): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(55): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(58): warning C4305: 'argument': truncation from 'double' to 'float'
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(58): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(61): warning C4305: 'argument': truncation from 'double' to 'float'
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(61): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(64): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(67): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(70): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(73): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(76): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(79): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(105): warning C4100: 'fZ': unreferenced formal parameter
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(105): warning C4100: 'fY': unreferenced formal parameter
+f:\repositories\uni - projects\plane_assignment\hierarchy\robot.cpp(105): warning C4100: 'fX': unreferenced formal parameter
   Hierarchy.vcxproj -> F:\Repositories\Uni - Projects\Plane_Assignment\Debug\Hierarchy.exe

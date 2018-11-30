@@ -1,4 +1,5 @@
   <library_animations>
+
     <animation id="root.translate">
       <source id="root.translate_root_translate-input">
         <float_array id="root.translate_root_translate-input-array" count="1">0.0416666679084301</float_array>
@@ -19,6 +20,7 @@
         </technique_common>
       </source>
     </animation>
+
     <animation id="root.rotateX">
       <source id="root.rotateX_root_rotateX.ANGLE-input">
         <float_array id="root.rotateX_root_rotateX.ANGLE-input-array" count="3">0.0416666679084301 0.5416666865348816 1.666666626930237</float_array>
@@ -73,6 +75,11 @@
         </technique_common>
       </source>
     </animation>
+
+
+
+
+
     <animation id="pelvis.translate">
       <source id="pelvis.translate_pelvis_translate-input">
         <float_array id="pelvis.translate_pelvis_translate-input-array" count="1">0.0416666679084301</float_array>

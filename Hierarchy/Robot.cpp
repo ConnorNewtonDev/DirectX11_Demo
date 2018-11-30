@@ -2,9 +2,13 @@
 
 Robot::Robot(float fX, float fY, float fZ, float fRotY)
 {
+	parser = new XMLParser();
+	parser->Init("Resources/Maya Files/RobotIdleAnim.dae");
 	m_mWorldMatrix = XMMatrixIdentity();
 	//	m_mWorldMatrix *= XMMatrixScaling(0.25f, 0.25f, 0.f);
 	LoadNodes(fX, fY, fZ, fRotY);
+
+	parser->GetNode("root.rotateX");
 }
 
 Robot::~Robot()
@@ -17,7 +21,6 @@ void Robot::LoadResources()
 
 void Robot::ReleaseResources()
 {
-	//robotNodes[0]->ReleaseResources();
 	pelvis->ReleaseResources();
 	for (int i = 0; i < robotNodes.size(); i++)
 	{
@@ -27,8 +30,11 @@ void Robot::ReleaseResources()
 
 void Robot::LoadNodes(float fX, float fY, float fZ, float fRotY)
 {
+	//Root
+	root = new NodeT(fX, fY, fZ, fRotY, "");
+	robotNodes.push_back(root);
 	//Pelvis
-	pelvis = new NodeT(fX, fY, fZ, fRotY, "Resources/Robot/pelvis.x");
+	pelvis = new NodeT(-0.250011f / 10, 15.25000f / 10, -0.000005f / 10, 0.0f, "Resources/Robot/pelvis.x");
 	robotNodes.push_back(pelvis);
 	//Body
 	body = new NodeT(0.500099f / 10, 43.749992f / 10, 0.000003f / 10, 0.0f, "Resources/Robot/body.x");
@@ -76,6 +82,7 @@ void Robot::LoadNodes(float fX, float fY, float fZ, float fRotY)
 
 void Robot::Draw(void)
 {
+	
 	pelvis->Draw();
 	body->Draw();
 	left_shoulder->Draw();
@@ -91,13 +98,6 @@ void Robot::Draw(void)
 	right_hip->Draw();
 	right_knee->Draw();
 	right_ankle->Draw();
-	/*if (!robotNodes.empty())
-	{
-		for (int i = 0; i < robotNodes.size(); i++)
-		{
-			robotNodes[i]->Draw();
-		}
-	}*/
 
 
 }
@@ -114,8 +114,8 @@ void Robot::Update()
 
 void Robot::UpdateMatrices()
 {
-
-	pelvis->UpdateMatrices(m_mWorldMatrix);
+	root->UpdateMatrices(m_mWorldMatrix);
+	pelvis->UpdateMatrices(root->GetNodeWorldMatrix());
 	body->UpdateMatrices(pelvis->GetNodeWorldMatrix());
 	left_shoulder->UpdateMatrices(body->GetNodeWorldMatrix());
 	left_elbow->UpdateMatrices(left_shoulder->GetNodeWorldMatrix());
@@ -124,10 +124,10 @@ void Robot::UpdateMatrices()
 	right_elbow->UpdateMatrices(right_shoulder->GetNodeWorldMatrix());
 	right_wrist->UpdateMatrices(right_elbow->GetNodeWorldMatrix());
 	neck->UpdateMatrices(body->GetNodeWorldMatrix());
-	left_hip->UpdateMatrices(pelvis->GetNodeWorldMatrix());	//pelvis->GetNodeWorldMatrix()
+	left_hip->UpdateMatrices(root->GetNodeWorldMatrix());	//pelvis->GetNodeWorldMatrix()
 	left_knee->UpdateMatrices(left_hip->GetNodeWorldMatrix());
 	left_ankle->UpdateMatrices(left_knee->GetNodeWorldMatrix());
-	right_hip->UpdateMatrices(pelvis->GetNodeWorldMatrix());//pelvis->GetNodeWorldMatrix()
+	right_hip->UpdateMatrices(root->GetNodeWorldMatrix());//pelvis->GetNodeWorldMatrix()
 	right_knee->UpdateMatrices(right_hip->GetNodeWorldMatrix());
 	right_ankle->UpdateMatrices(right_knee->GetNodeWorldMatrix());
 	/*if (!robotNodes.empty())

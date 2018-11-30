@@ -3,6 +3,8 @@
 
 #include "Application.h"
 #include "NodeT.h"
+#include "XMLParser.h"
+
 #include <list>
 #include <vector>
 #include <iostream>
@@ -29,11 +31,13 @@ private:
 
 	
 public:
+	XMLParser* parser = NULL;
 	XMFLOAT4 m_v4Rot; // Euler rotation angles
 	XMFLOAT4 m_v4Pos; // World position
 	XMVECTOR m_vForwardVector; // Forward Vector for Plane
 	XMMATRIX m_mWorldMatrix; // World transformation matrix
 
+	NodeT* root = NULL;
 	NodeT* pelvis = NULL;
 	NodeT* body = NULL;
 	NodeT* left_shoulder = NULL;
@@ -54,6 +58,8 @@ public:
 	std::string nodeFilePath;
 
 
+
+
 	void* operator new(size_t i)
 	{
 		return _mm_malloc(i, 16);
@@ -65,6 +71,5 @@ public:
 	}
 
 };
-
 
 #endif
