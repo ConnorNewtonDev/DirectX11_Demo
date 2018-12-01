@@ -28,7 +28,6 @@ __declspec(align(16)) class Aeroplane
 	void UpdateBullets();
 	void Draw(void);
 
-	void SetWorldPosition(float fX, float fY, float fZ);
 
   private:
 	void UpdateMatrices(void);
@@ -49,8 +48,6 @@ __declspec(align(16)) class Aeroplane
 	XMMATRIX m_mWorldTrans; // World translation matrix
 	XMMATRIX m_mWorldMatrix; // World transformation matrix
 	
-	XMMATRIX m_mBulletSpawnMatrix; // Gun's world transformation matrix
-
 	XMFLOAT4 m_v4CamRot; // Local rotation angles
 	XMFLOAT4 m_v4CamOff; // Local offset
 
@@ -61,6 +58,7 @@ __declspec(align(16)) class Aeroplane
 
 
 	Bullet* m_pBullet = NULL;	
+	NodeT* pHull = NULL;
 	NodeT* pTurret = NULL;
 	NodeT* pGun = NULL;
 	NodeT* pProp = NULL;
@@ -77,7 +75,7 @@ __declspec(align(16)) class Aeroplane
 		DirectX::XMStoreFloat4(&v4Pos, m_vCamWorldPos);
 		return v4Pos;
 	}
-	XMFLOAT4 GetPosition(void) { return m_v4Pos; }
+	XMFLOAT4 GetPosition(void) { return pHull->m_v4Pos; }
 	void SetGunCamera(bool value) { m_bGunCam = value; }
 
 	void* operator new(size_t i)
