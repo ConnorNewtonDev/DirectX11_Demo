@@ -204,7 +204,7 @@ void Aeroplane::Update(bool bPlayerControl)
 void Aeroplane::UpdateBullets()
 {
 	if (m_pBullet != NULL)
-		m_pBullet->Update();
+		m_pBullet->Update(m_vForwardVector * m_fSpeed);
 }
 
 void Aeroplane::LoadResources(void)

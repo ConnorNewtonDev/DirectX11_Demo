@@ -13,12 +13,12 @@ public:
 	void Draw();
 	static void LoadResources(void);
 	static void ReleaseResources(void);
-	void Update();
+	void Update(XMVECTOR m_vInheritedVelocity);
 	void UpdateMatrices(void);
 	
 private:
 	//---- Functions ----//
-	void MoveForward();
+	void MoveForward(XMVECTOR m_vInheritedVelocity);
 	void SetWorldPosition();
 
 
@@ -31,6 +31,7 @@ private:
 	XMMATRIX m_mBulletWorldMatrix;	
 
 	XMVECTOR m_vForwardVector;  
+	XMVECTOR m_vInheritedVelocity;
 	float fBulletSpeed;			
 	NodeT* spawnParent;
 	XMFLOAT4 m_v4Rot; // Euler rotation angles

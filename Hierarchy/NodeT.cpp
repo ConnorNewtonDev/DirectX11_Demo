@@ -41,18 +41,13 @@ void NodeT::Draw(void)
 
 XMVECTOR NodeT::GetNodeWorldPosition(XMVECTOR& parentMatrix)
 {	
-	/*if (parent != NULL)
+	if (parent != NULL)
 	{
 		XMVECTOR temp = parent->GetNodeWorldPosition(XMLoadFloat4(&m_v4Pos));
 		return parentMatrix + temp;
-	}*/
-	NodeT* target;
-	XMVECTOR temp;
-	while (target->parent != NULL)
-	{
-
 	}
-	return XMLoadFloat4(&m_v4Pos) + parentMatrix;
+	return  XMLoadFloat4(&m_v4Pos) + parentMatrix;
+	
 }
 
 XMVECTOR NodeT::GetNodeWorldRotation(XMVECTOR& parentMatrix)

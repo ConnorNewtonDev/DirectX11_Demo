@@ -68,6 +68,7 @@ __declspec(align(16)) class Aeroplane
 	float GetXPosition(void) { return m_v4Pos.x; }
 	float GetYPosition(void) { return m_v4Pos.y; }
 	float GetZPosition(void) { return m_v4Pos.z; }
+	float GetForwardSpeed()  { return m_fSpeed;  }
 	XMFLOAT4 GetFocusPosition(void) { return GetPosition(); }
 	XMFLOAT4 GetCameraPosition(void)
 	{

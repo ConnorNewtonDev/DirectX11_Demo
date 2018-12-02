@@ -15,7 +15,7 @@ Bullet::Bullet(NodeT* spawner)
 	SetWorldPosition();
 	LoadResources();
 
-	fBulletSpeed = 0.5f;
+	fBulletSpeed = 10.0f;
 
 }
 
@@ -23,9 +23,9 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::Update()
+void Bullet::Update(XMVECTOR m_vInheritedVelocity)
 {
-	MoveForward();
+	MoveForward(m_vInheritedVelocity);
 }
 
 void Bullet::Draw(void)
@@ -46,35 +46,27 @@ void Bullet::ReleaseResources(void)
 
 //---- Private ----//
 
-void Bullet::MoveForward()
+void Bullet::MoveForward(XMVECTOR m_vInheritedVelocity)
 {
+
+
 	XMVECTOR vCurPos = XMLoadFloat4(&m_v4Pos);
 	vCurPos += m_vForwardVector * fBulletSpeed;
+
+	//Need to find a way to Inverse X axis?
+	vCurPos += m_vInheritedVelocity;
 	XMStoreFloat4(&m_v4Pos, vCurPos);
 }
 
 void Bullet::SetWorldPosition()
 {
-	XMMATRIX mRotX, mRotY, mRotZ, mTrans, world;
-	XMStoreFloat4(&m_v4Pos, spawnParent->GetNodeWorldMatrix().r[3]);
 
+	m_vInheritedVelocity = XMVector3Cross(spawnParent->parent->GetNodeWorldMatrix().r[0], spawnParent->parent->GetNodeWorldMatrix().r[1]);
 	//TODO:: Fix Local Rotation
-	//XMStoreFloat4(&m_v4Pos, spawnParent->GetNodeWorldPosition(XMLoadFloat4(&m_v4Pos)));
+
+
+	XMStoreFloat4(&m_v4Pos, spawnParent->GetNodeWorldMatrix().r[3]);
 	XMStoreFloat4(&m_v4Rot, spawnParent->GetNodeWorldRotation(XMLoadFloat4(&m_v4Rot)));
-
-	//TEST:::
-	//mRotX = XMMatrixRotationX(XMConvertToRadians(m_v4Rot.x));
-	//mRotY = XMMatrixRotationY(XMConvertToRadians(m_v4Rot.y));
-	//mRotZ = XMMatrixRotationZ(XMConvertToRadians(m_v4Rot.z));
-	//mTrans = XMMatrixTranslationFromVector(XMLoadFloat4(&m_v4Pos));
-	//// Then concatenate the matrices to calculate m_mBulletWorldMatrix
-	//m_mBulletWorldMatrix = mRotX * mRotY * mRotZ * mTrans;
-	//UpdateMatrices();
-	//Movement Works
-	//m_mBulletWorldMatrix = spawnParent->GetNodeWorldMatrix();
-
-
-
 }
 
 void Bullet::UpdateMatrices(void)
@@ -82,13 +74,13 @@ void Bullet::UpdateMatrices(void)
 	XMMATRIX mRotX, mRotY, mRotZ, mTrans, scale;
 	// Calculate m_mWorldMatrix for plane based on Euler rotation angles and position data.
 	mRotX = XMMatrixRotationX(XMConvertToRadians(m_v4Rot.x));
-	mRotY = XMMatrixRotationY(XMConvertToRadians(m_v4Rot.y /*+ 105*/));
+	mRotY = XMMatrixRotationY(XMConvertToRadians(m_v4Rot.y));
 	mRotZ = XMMatrixRotationZ(XMConvertToRadians(m_v4Rot.z));
 	mTrans = XMMatrixTranslationFromVector(XMLoadFloat4(&m_v4Pos));
-	scale = XMMatrixScaling(0.5f, 0.5f, 0.5f);
+	scale = XMMatrixScaling(0.1f, 0.1f, 0.1f);
 
 	// Then concatenate the matrices to calculate m_mBulletWorldMatrix
-	m_mBulletWorldMatrix = scale * mRotX *  mRotZ * mRotY * mTrans;
+	m_mBulletWorldMatrix = scale * mRotX *  mRotZ * mRotY *  mTrans;
 
 	m_vForwardVector = XMVector3Cross(m_mBulletWorldMatrix.r[0], m_mBulletWorldMatrix.r[1]);
 
