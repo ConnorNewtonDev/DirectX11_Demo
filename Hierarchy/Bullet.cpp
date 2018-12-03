@@ -13,10 +13,11 @@ Bullet::Bullet(NodeT* spawner, XMVECTOR inheritedVelocity)
 	m_v4Pos = XMFLOAT4(0,0,0,0);
 	m_v4Rot = XMFLOAT4(0,0,0,0);
 
+	m_vForwardVector = XMVectorZero();
 	SetWorldPosition();
 	LoadResources();
-
-	fBulletSpeed = 0.5f;
+	UpdateMatrices();
+	fBulletSpeed = 2.5f;
 
 }
 
@@ -57,34 +58,32 @@ void Bullet::MoveForward()
 	vCurPos += m_vInheritedVelocity;
 
 	XMStoreFloat4(&m_v4Pos, vCurPos);
+	UpdateMatrices();
 }
 
 void Bullet::SetWorldPosition()
 {
-	XMFLOAT4 temp;
-	XMStoreFloat4(&temp, m_vInheritedVelocity);
 
-	m_vInheritedVelocity = XMVector3Cross(spawnParent->parent->GetNodeWorldMatrix().r[0], spawnParent->parent->GetNodeWorldMatrix().r[1]);
-	//TODO:: Fix Local Rotation
+	XMStoreFloat4(&m_v4Pos, spawnParent->GetNodeWorldMatrix().r[3]);
 
-	XMStoreFloat4(&m_v4Pos, spawnParent->GetNodeWorldMatrix().r[3] + m_vInheritedVelocity);
-	XMStoreFloat4(&m_v4Rot, spawnParent->GetNodeWorldRotation(XMLoadFloat4(&m_v4Rot)));
+	XMVECTOR scale, rot, trans;
+	XMMatrixDecompose(&scale, &rot, &trans, spawnParent->GetNodeWorldMatrix());
+
+	XMStoreFloat4(&m_v4Rot, rot);
+
 }
 
 void Bullet::UpdateMatrices(void)
 {
-	XMMATRIX mRotX, mRotY, mRotZ, mTrans, scale;
+	XMMATRIX mTrans, scale, mRot;
+
 	// Calculate m_mWorldMatrix for plane based on Euler rotation angles and position data.
-	mRotX = XMMatrixRotationX(XMConvertToRadians(m_v4Rot.x));
-	mRotY = XMMatrixRotationY(XMConvertToRadians(m_v4Rot.y));
-	mRotZ = XMMatrixRotationZ(XMConvertToRadians(m_v4Rot.z));
 	mTrans = XMMatrixTranslationFromVector(XMLoadFloat4(&m_v4Pos));
 	scale = XMMatrixScaling(0.1f, 0.1f, 0.1f);
+	mRot = XMMatrixRotationQuaternion(XMLoadFloat4(&m_v4Rot));
+	m_mBulletWorldMatrix = scale * mRot *  mTrans;
 
-	// Then concatenate the matrices to calculate m_mBulletWorldMatrix
-	m_mBulletWorldMatrix = scale * mRotX *  mRotZ * mRotY *  mTrans;
-
-	m_vForwardVector = XMVector3Cross(m_mBulletWorldMatrix.r[0], m_mBulletWorldMatrix.r[1]);
-
+	
+	m_vForwardVector = XMVector3TransformNormal(forward, m_mBulletWorldMatrix);
 }
 

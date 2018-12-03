@@ -46,7 +46,7 @@ __declspec(align(16)) class Aeroplane
 	XMMATRIX m_mCamWorldMatrix; // Camera's world transformation matrix
 
 	bool m_bGunCam;
-
+	const XMVECTOR forward = XMVectorSet(0, 0, 1, 0);
 	const float fBulletCD = 1.5f;
 	float fCurTimer = 0.0f;
 	std::vector<Bullet*> bullets;

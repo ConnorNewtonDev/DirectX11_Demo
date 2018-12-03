@@ -42,18 +42,14 @@ Aeroplane::~Aeroplane(void)
 
 void Aeroplane::UpdateMatrices(void)
 {	
-	m_vForwardVector = XMVector3Cross(components[0]->GetNodeWorldMatrix().r[0], components[0]->GetNodeWorldMatrix().r[1]);	//[0] = Up [1] = Right
-
-	//Bullets
+	m_vForwardVector = XMVector3TransformNormal(forward, components[0]->GetNodeWorldMatrix());
+	//Components
 	for (int i = 0; i < components.size(); i++)
 	{
 		components[i]->UpdateMatrices();
 	}
-	//Bullets
-	for (int i = 0; i < bullets.size(); i++)
-	{
-		bullets[i]->UpdateMatrices();
-	}
+
+
 
 	UpdateCamera();
 	
@@ -171,8 +167,8 @@ void Aeroplane::Update(bool bPlayerControl)
 		  // Forward Momentum
 		m_fSpeed += 0.001f;
 
-		if (m_fSpeed > 1)
-			m_fSpeed = 1;
+		if (m_fSpeed > 0.5)
+			m_fSpeed = 0.5;
 
 		// Rotate propeller and turret
 		components[1]->m_v4Rot.z += 100 * m_fSpeed;
@@ -182,8 +178,8 @@ void Aeroplane::Update(bool bPlayerControl)
 	}
 	components[3]->m_v4Rot.x = (sin((float)XMConvertToRadians(components[2]->m_v4Rot.y * 4.0f)) * 10.0f) - 10.0f;
 
-
 	UpdateMatrices();
+
 
 	// Move Forward
 	XMVECTOR vCurrPos = DirectX::XMLoadFloat4(&components[0]->m_v4Pos);
@@ -201,7 +197,7 @@ void Aeroplane::AttemptFire()
 {
 	if (fCurTimer <= 0.0f)
 	{
-		bullets.push_back(new Bullet(components[3], m_vForwardVector));
+		bullets.push_back(new Bullet(components[3], m_vForwardVector * m_fSpeed));
 		fCurTimer = fBulletCD;
 	}
 

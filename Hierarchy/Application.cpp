@@ -8,7 +8,8 @@ Application* Application::s_pApp = NULL;
 const int CAMERA_MAP = 0;
 const int CAMERA_PLANE = 1;
 const int CAMERA_GUN = 2;
-const int CAMERA_MAX = 3;
+const int CAMERA_ROBOT = 3;
+const int CAMERA_MAX = 4;
 
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
@@ -127,6 +128,11 @@ void Application::HandleRender()
 			vCamera = XMFLOAT3(m_pAeroplane->GetCameraPosition().x, m_pAeroplane->GetCameraPosition().y, m_pAeroplane->GetCameraPosition().z);
 			vLookat = XMFLOAT3(m_pAeroplane->GetFocusPosition().x, m_pAeroplane->GetFocusPosition().y, m_pAeroplane->GetFocusPosition().z);
 			break;
+		case CAMERA_ROBOT:
+			m_pAeroplane->SetGunCamera(true);
+			vCamera = XMFLOAT3(m_pRobot->robotNodes[0]->m_v4Pos.x + 40, m_pRobot->robotNodes[0]->m_v4Pos.y + 10, m_pRobot->robotNodes[0]->m_v4Pos.z );
+			vLookat = XMFLOAT3(m_pRobot->robotNodes[0]->m_v4Pos.x, m_pRobot->robotNodes[0]->m_v4Pos.y, m_pRobot->robotNodes[0]->m_v4Pos.z);
+			break; 
 		case CAMERA_GUN:
 			m_pAeroplane->SetGunCamera(true);
 			vCamera = XMFLOAT3(m_pAeroplane->GetCameraPosition().x, m_pAeroplane->GetCameraPosition().y, m_pAeroplane->GetCameraPosition().z);
