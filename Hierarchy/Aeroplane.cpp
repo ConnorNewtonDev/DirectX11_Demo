@@ -93,91 +93,95 @@ void Aeroplane::UpdateCamera()
 
 void Aeroplane::Update(bool bPlayerControl)
 {
-	//---- Player Controls ----//
-	if(bPlayerControl)
-	{	
-		if (GetAsyncKeyState('R') && 0x8000)
+	if (bEngineOn)
+	{
+		//---- Player Controls ----//
+		if (bPlayerControl)
 		{
-			bullets.push_back(new Bullet(components[3], m_vForwardVector * m_fSpeed));
-		}
-		//----------- ALTITUDE -----------//
-		if (GetAsyncKeyState('Q') & 0x8000)
-		{
-			if ((components[0]->m_v4Rot.x) < 60)
-				components[0]->m_v4Rot.x += 1;
-		}
-		else if (GetAsyncKeyState('A') & 0x8000)
-		{
-			if ((components[0]->m_v4Rot.x) > -60)
-				components[0]->m_v4Rot.x -= (1);
-		}
-		else if((components[0]->m_v4Rot.x) != 0)			// If no input on "Q" or "A" slowly return to 0
-		{
-			if((components[0]->m_v4Rot.x) < 0)
+			if (GetAsyncKeyState('R') && 0x8000)
 			{
-				if ((components[0]->m_v4Rot.x) < -0.5)
-					components[0]->m_v4Rot.x += (0.5);
-				else
-					components[0]->m_v4Rot.x = (0);
+				AttemptFire();
 			}
-			else if ((components[0]->m_v4Rot.x) > 0)
+			//----------- ALTITUDE -----------//
+			if (GetAsyncKeyState('Q') & 0x8000)
 			{
-				if((components[0]->m_v4Rot.x) > 0.5)
-					components[0]->m_v4Rot.x -= (0.5);
-				else
-					components[0]->m_v4Rot.x = (0);
+				if ((components[0]->m_v4Rot.x) < 60)
+					components[0]->m_v4Rot.x += 1;
 			}
-		}
-
-		//----------- ROLLING -----------//
-		if (GetAsyncKeyState('P') & 0x8000)				// Step 3: Make the plane yaw and roll left when you press "P" and return to level when released [Max Roll = 20deg]
-		{
-			if ((components[0]->m_v4Rot.z) > -20)
-				components[0]->m_v4Rot.z -= (1);
-
-			components[0]->m_v4Rot.y += (1);
-
-		}
-		else if (GetAsyncKeyState('O') & 0x8000)			// Step 4: Make the plane yaw and roll right when you press "O" and return to level when released [Min Roll = -20deg]
-		{			
-			if ((components[0]->m_v4Rot.z) < 20)
-				components[0]->m_v4Rot.z += (1);
-
-			components[0]->m_v4Rot.y -= (1);
-		}
-		else if((components[0]->m_v4Rot.z != 0))			// If no input on "O" or "P" slowly return to 0
-		{
-			if ((components[0]->m_v4Rot.z) < 0)
+			else if (GetAsyncKeyState('A') & 0x8000)
 			{
-				if ((components[0]->m_v4Rot.z) < -0.5)
-					components[0]->m_v4Rot.z += (0.5);
-				else
-					components[0]->m_v4Rot.z = (0);
+				if ((components[0]->m_v4Rot.x) > -60)
+					components[0]->m_v4Rot.x -= (1);
 			}
-			else if ((components[0]->m_v4Rot.z) > 0)
+			else if ((components[0]->m_v4Rot.x) != 0)			// If no input on "Q" or "A" slowly return to 0
 			{
-				if ((components[0]->m_v4Rot.z) > 0.5)
-					components[0]->m_v4Rot.z -= (0.5);
-				else
-					components[0]->m_v4Rot.z = (0);
+				if ((components[0]->m_v4Rot.x) < 0)
+				{
+					if ((components[0]->m_v4Rot.x) < -0.5)
+						components[0]->m_v4Rot.x += (0.5);
+					else
+						components[0]->m_v4Rot.x = (0);
+				}
+				else if ((components[0]->m_v4Rot.x) > 0)
+				{
+					if ((components[0]->m_v4Rot.x) > 0.5)
+						components[0]->m_v4Rot.x -= (0.5);
+					else
+						components[0]->m_v4Rot.x = (0);
+				}
 			}
-		}
 
-	} // End of if player control
+			//----------- ROLLING -----------//
+			if (GetAsyncKeyState('P') & 0x8000)				// Step 3: Make the plane yaw and roll left when you press "P" and return to level when released [Max Roll = 20deg]
+			{
+				if ((components[0]->m_v4Rot.z) > -20)
+					components[0]->m_v4Rot.z -= (1);
 
-	
-	// Forward Momentum
-	m_fSpeed += 0.001f;
+				components[0]->m_v4Rot.y += (1);
 
-	if(m_fSpeed > 1)
-		m_fSpeed = 1;
+			}
+			else if (GetAsyncKeyState('O') & 0x8000)			// Step 4: Make the plane yaw and roll right when you press "O" and return to level when released [Min Roll = -20deg]
+			{
+				if ((components[0]->m_v4Rot.z) < 20)
+					components[0]->m_v4Rot.z += (1);
 
-	// Rotate propeller and turret
-	components[1]->m_v4Rot.z += 100 * m_fSpeed;
-	components[2]->m_v4Rot.y += 0.1f;
+				components[0]->m_v4Rot.y -= (1);
+			}
+			else if ((components[0]->m_v4Rot.z != 0))			// If no input on "O" or "P" slowly return to 0
+			{
+				if ((components[0]->m_v4Rot.z) < 0)
+				{
+					if ((components[0]->m_v4Rot.z) < -0.5)
+						components[0]->m_v4Rot.z += (0.5);
+					else
+						components[0]->m_v4Rot.z = (0);
+				}
+				else if ((components[0]->m_v4Rot.z) > 0)
+				{
+					if ((components[0]->m_v4Rot.z) > 0.5)
+						components[0]->m_v4Rot.z -= (0.5);
+					else
+						components[0]->m_v4Rot.z = (0);
+				}
+			}
 
-	// Tilt gun up and down as turret rotates
+		} // End of if player control
+
+
+		  // Forward Momentum
+		m_fSpeed += 0.001f;
+
+		if (m_fSpeed > 1)
+			m_fSpeed = 1;
+
+		// Rotate propeller and turret
+		components[1]->m_v4Rot.z += 100 * m_fSpeed;
+		components[2]->m_v4Rot.y += 0.1f;
+
+		// Tilt gun up and down as turret rotates
+	}
 	components[3]->m_v4Rot.x = (sin((float)XMConvertToRadians(components[2]->m_v4Rot.y * 4.0f)) * 10.0f) - 10.0f;
+
 
 	UpdateMatrices();
 
@@ -193,8 +197,21 @@ void Aeroplane::Update(bool bPlayerControl)
 
 }
 
+void Aeroplane::AttemptFire()
+{
+	if (fCurTimer <= 0.0f)
+	{
+		bullets.push_back(new Bullet(components[3], m_vForwardVector));
+		fCurTimer = fBulletCD;
+	}
+
+}
+
 void Aeroplane::UpdateBullets()
 {
+	//Timer
+	if (fCurTimer > 0.0f)
+		fCurTimer -= 0.05f;
 
 	for (int i = 0; i < bullets.size(); i++)
 	{

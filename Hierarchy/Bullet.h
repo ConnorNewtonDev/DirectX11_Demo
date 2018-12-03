@@ -27,7 +27,7 @@ private:
 	static CommonMesh* s_pBulletMesh;
 	static bool s_bResourcesReady;
 	bool positioned = false;
-
+	
 	XMMATRIX m_mBulletWorldMatrix;	
 	XMVECTOR m_vForwardVector;  
 	XMVECTOR m_vInheritedVelocity;

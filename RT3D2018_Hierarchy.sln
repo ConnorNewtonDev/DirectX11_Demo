@@ -6,8 +6,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shared", "Shared\Shared.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hierarchy", "Hierarchy\Hierarchy.vcxproj", "{43E3761F-A542-41F2-A1A7-D75B1FF461D4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinyxml2", "tinyxml2\tinyxml2.vcxproj", "{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -32,14 +30,6 @@ Global
 		{43E3761F-A542-41F2-A1A7-D75B1FF461D4}.Release|x86.Build.0 = Release|Win32
 		{43E3761F-A542-41F2-A1A7-D75B1FF461D4}.RelWithDebInfo|x86.ActiveCfg = Release|Win32
 		{43E3761F-A542-41F2-A1A7-D75B1FF461D4}.RelWithDebInfo|x86.Build.0 = Release|Win32
-		{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}.Debug|x86.ActiveCfg = Debug|Win32
-		{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}.Debug|x86.Build.0 = Debug|Win32
-		{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}.MinSizeRel|x86.ActiveCfg = MinSizeRel|Win32
-		{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}.MinSizeRel|x86.Build.0 = MinSizeRel|Win32
-		{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}.Release|x86.ActiveCfg = Release|Win32
-		{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}.Release|x86.Build.0 = Release|Win32
-		{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}.RelWithDebInfo|x86.ActiveCfg = RelWithDebInfo|Win32
-		{1F53ED40-FB6F-33E6-B237-9B69150CD1AD}.RelWithDebInfo|x86.Build.0 = RelWithDebInfo|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

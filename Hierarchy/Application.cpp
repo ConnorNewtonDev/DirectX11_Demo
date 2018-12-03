@@ -59,6 +59,9 @@ void Application::HandleUpdate()
 {
 	m_rotationAngle += .01f;
 
+	if (this->IsKeyPressed('S') && !m_pAeroplane->bEngineOn)
+		m_pAeroplane->bEngineOn = true;
+
 	if(m_cameraState == CAMERA_MAP)
 	{
 		if(this->IsKeyPressed('Q'))
@@ -101,6 +104,7 @@ void Application::HandleUpdate()
 	}
 
 	m_pAeroplane->Update(m_cameraState != CAMERA_MAP);
+
 	m_pRobot->Update();
 }
 

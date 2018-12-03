@@ -31,7 +31,7 @@ __declspec(align(16)) class Aeroplane
   private:
 	void UpdateMatrices(void);
 	void UpdateCamera();
-
+	void AttemptFire();
 
 	XMVECTOR m_vForwardVector; // Forward Vector for Plane
 	float m_fSpeed; // Forward speed
@@ -47,10 +47,13 @@ __declspec(align(16)) class Aeroplane
 
 	bool m_bGunCam;
 
+	const float fBulletCD = 1.5f;
+	float fCurTimer = 0.0f;
 	std::vector<Bullet*> bullets;
 	std::vector<NodeT*> components;
 
   public:
+	bool bEngineOn = false;
 	float GetXPosition(void) { return components[0]->m_v4Pos.x; }
 	float GetYPosition(void) { return components[0]->m_v4Pos.y; }
 	float GetZPosition(void) { return components[0]->m_v4Pos.z; }

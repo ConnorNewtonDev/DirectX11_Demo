@@ -16,7 +16,7 @@ Bullet::Bullet(NodeT* spawner, XMVECTOR inheritedVelocity)
 	SetWorldPosition();
 	LoadResources();
 
-	fBulletSpeed = 5.0f;
+	fBulletSpeed = 0.5f;
 
 }
 
@@ -61,12 +61,13 @@ void Bullet::MoveForward()
 
 void Bullet::SetWorldPosition()
 {
+	XMFLOAT4 temp;
+	XMStoreFloat4(&temp, m_vInheritedVelocity);
 
 	m_vInheritedVelocity = XMVector3Cross(spawnParent->parent->GetNodeWorldMatrix().r[0], spawnParent->parent->GetNodeWorldMatrix().r[1]);
 	//TODO:: Fix Local Rotation
 
-
-	XMStoreFloat4(&m_v4Pos, spawnParent->GetNodeWorldMatrix().r[3]);
+	XMStoreFloat4(&m_v4Pos, spawnParent->GetNodeWorldMatrix().r[3] + m_vInheritedVelocity);
 	XMStoreFloat4(&m_v4Rot, spawnParent->GetNodeWorldRotation(XMLoadFloat4(&m_v4Rot)));
 }
 

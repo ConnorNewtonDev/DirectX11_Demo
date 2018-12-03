@@ -1,9 +1,1 @@
-﻿  App.cpp
-  CommonApp.cpp
-  CommonFont.cpp
-f:\repositories\uni - projects\plane_assignment\shared\commonfont.cpp(109): warning C4456: declaration of 'ch' hides previous local declaration
-  f:\repositories\uni - projects\plane_assignment\shared\commonfont.cpp(100): note: see declaration of 'ch'
-  CommonMesh.cpp
-  D3DHelpers.cpp
-  Generating Code...
-  Shared.vcxproj -> F:\Repositories\Uni - Projects\Plane_Assignment\Debug\Shared.lib
+﻿  Shared.vcxproj -> C:\Users\b4032180\Source\Repos\Plane_Assignment\Debug\Shared.lib
