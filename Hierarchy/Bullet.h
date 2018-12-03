@@ -7,18 +7,18 @@
 __declspec(align(16)) class Bullet
 {
 public:
-	Bullet(NodeT* spawner);
+	Bullet(NodeT* spawner, XMVECTOR m_vInheritedVelocity);
 	~Bullet();
 
 	void Draw();
 	static void LoadResources(void);
 	static void ReleaseResources(void);
-	void Update(XMVECTOR m_vInheritedVelocity);
+	void Update();
 	void UpdateMatrices(void);
 	
 private:
 	//---- Functions ----//
-	void MoveForward(XMVECTOR m_vInheritedVelocity);
+	void MoveForward();
 	void SetWorldPosition();
 
 
@@ -29,7 +29,6 @@ private:
 	bool positioned = false;
 
 	XMMATRIX m_mBulletWorldMatrix;	
-
 	XMVECTOR m_vForwardVector;  
 	XMVECTOR m_vInheritedVelocity;
 	float fBulletSpeed;			

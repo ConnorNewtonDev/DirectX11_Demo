@@ -13,8 +13,8 @@
 #include "Application.h"
 #include "Bullet.h"
 #include "NodeT.h"
-#include <list>
 #include <iostream>
+#include <ctime>
 
 __declspec(align(16)) class Aeroplane
 {
@@ -22,8 +22,7 @@ __declspec(align(16)) class Aeroplane
 	Aeroplane(float fX = 0.0f, float fY = 0.0f, float fZ = 0.0f, float fRotY = 0.0f);
 	~Aeroplane(void);
 
-	static void LoadResources(void); // Only load the resources once for all instances
-	static void ReleaseResources(void); // Only free the resources once for all instances
+	void ReleaseResources(void); // Only free the resources once for all instances
 	void Update(bool bPlayerControl); // Player only has control of plane when flag is set
 	void UpdateBullets();
 	void Draw(void);
@@ -31,16 +30,8 @@ __declspec(align(16)) class Aeroplane
 
   private:
 	void UpdateMatrices(void);
+	void UpdateCamera();
 
-	static CommonMesh* s_pPlaneMesh; // Only one plane mesh for all instances
-	//static CommonMesh* s_pPropMesh; // Only one propellor mesh for all instances
-	//static CommonMesh* s_pTurretMesh; // Only one turret mesh for all instances
-	//static CommonMesh* s_pGunMesh; // Only one gun mesh for all instances
-
-	static bool s_bResourcesReady;
-
-	XMFLOAT4 m_v4Rot; // Euler rotation angles
-	XMFLOAT4 m_v4Pos; // World position
 
 	XMVECTOR m_vForwardVector; // Forward Vector for Plane
 	float m_fSpeed; // Forward speed
@@ -56,18 +47,13 @@ __declspec(align(16)) class Aeroplane
 
 	bool m_bGunCam;
 
-
-	Bullet* m_pBullet = NULL;	
-	NodeT* pHull = NULL;
-	NodeT* pTurret = NULL;
-	NodeT* pGun = NULL;
-	NodeT* pProp = NULL;
-	//std::list<Bullet*> bullets = std::list<Bullet*>(5);
+	std::vector<Bullet*> bullets;
+	std::vector<NodeT*> components;
 
   public:
-	float GetXPosition(void) { return m_v4Pos.x; }
-	float GetYPosition(void) { return m_v4Pos.y; }
-	float GetZPosition(void) { return m_v4Pos.z; }
+	float GetXPosition(void) { return components[0]->m_v4Pos.x; }
+	float GetYPosition(void) { return components[0]->m_v4Pos.y; }
+	float GetZPosition(void) { return components[0]->m_v4Pos.z; }
 	float GetForwardSpeed()  { return m_fSpeed;  }
 	XMFLOAT4 GetFocusPosition(void) { return GetPosition(); }
 	XMFLOAT4 GetCameraPosition(void)
@@ -76,7 +62,7 @@ __declspec(align(16)) class Aeroplane
 		DirectX::XMStoreFloat4(&v4Pos, m_vCamWorldPos);
 		return v4Pos;
 	}
-	XMFLOAT4 GetPosition(void) { return pHull->m_v4Pos; }
+	XMFLOAT4 GetPosition(void) { return components[0]->m_v4Pos; }
 	void SetGunCamera(bool value) { m_bGunCam = value; }
 
 	void* operator new(size_t i)

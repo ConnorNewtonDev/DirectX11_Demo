@@ -1,8 +1,17 @@
-﻿  Bullet.cpp
-f:\repositories\uni - projects\plane_assignment\hierarchy\bullet.cpp(26): warning C4458: declaration of 'm_vInheritedVelocity' hides class member
-  f:\repositories\uni - projects\plane_assignment\hierarchy\bullet.h(34): note: see declaration of 'Bullet::m_vInheritedVelocity'
-f:\repositories\uni - projects\plane_assignment\hierarchy\bullet.cpp(49): warning C4458: declaration of 'm_vInheritedVelocity' hides class member
-  f:\repositories\uni - projects\plane_assignment\hierarchy\bullet.h(34): note: see declaration of 'Bullet::m_vInheritedVelocity'
-f:\repositories\uni - projects\plane_assignment\hierarchy\bullet.cpp(67): warning C4239: nonstandard extension used: 'argument': conversion from 'DirectX::XMVECTOR' to 'DirectX::XMVECTOR &'
-  f:\repositories\uni - projects\plane_assignment\hierarchy\bullet.cpp(67): note: A non-const reference may only be bound to an lvalue
+﻿  Aeroplane.cpp
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(19): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(21): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(23): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(25): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(48): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(53): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(101): warning C4316: 'Bullet': object allocated on the heap may not be aligned 16
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(199): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(208): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(216): warning C4018: '<': signed/unsigned mismatch
+f:\repositories\uni - projects\plane_assignment\hierarchy\aeroplane.cpp(222): warning C4018: '<': signed/unsigned mismatch
+  Bullet.cpp
+f:\repositories\uni - projects\plane_assignment\hierarchy\bullet.cpp(70): warning C4239: nonstandard extension used: 'argument': conversion from 'DirectX::XMVECTOR' to 'DirectX::XMVECTOR &'
+  f:\repositories\uni - projects\plane_assignment\hierarchy\bullet.cpp(70): note: A non-const reference may only be bound to an lvalue
+  Generating Code...
   Hierarchy.vcxproj -> F:\Repositories\Uni - Projects\Plane_Assignment\Debug\Hierarchy.exe

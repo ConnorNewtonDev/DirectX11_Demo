@@ -28,8 +28,7 @@ void NodeT::LoadResources(std::string filePath)
 
 void NodeT::ReleaseResources()
 {
-	//Not statid dont need to?
-	//delete s_pNodeMesh;
+	delete s_pNodeMesh;
 }
 
 void NodeT::Draw(void)

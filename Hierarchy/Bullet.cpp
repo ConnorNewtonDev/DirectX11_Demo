@@ -5,17 +5,18 @@ CommonMesh* Bullet::s_pBulletMesh = NULL;
 bool Bullet::s_bResourcesReady = false;
 
 //---- Public ----//
-Bullet::Bullet(NodeT* spawner)
+Bullet::Bullet(NodeT* spawner, XMVECTOR inheritedVelocity)
 {
 	m_mBulletWorldMatrix = XMMatrixIdentity();
 	spawnParent = spawner;
+	m_vInheritedVelocity = inheritedVelocity;
 	m_v4Pos = XMFLOAT4(0,0,0,0);
 	m_v4Rot = XMFLOAT4(0,0,0,0);
 
 	SetWorldPosition();
 	LoadResources();
 
-	fBulletSpeed = 10.0f;
+	fBulletSpeed = 5.0f;
 
 }
 
@@ -23,9 +24,9 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::Update(XMVECTOR m_vInheritedVelocity)
+void Bullet::Update()
 {
-	MoveForward(m_vInheritedVelocity);
+	MoveForward();
 }
 
 void Bullet::Draw(void)
@@ -44,9 +45,7 @@ void Bullet::ReleaseResources(void)
 	delete s_pBulletMesh;
 }
 
-//---- Private ----//
-
-void Bullet::MoveForward(XMVECTOR m_vInheritedVelocity)
+void Bullet::MoveForward()
 {
 
 
@@ -54,7 +53,9 @@ void Bullet::MoveForward(XMVECTOR m_vInheritedVelocity)
 	vCurPos += m_vForwardVector * fBulletSpeed;
 
 	//Need to find a way to Inverse X axis?
+
 	vCurPos += m_vInheritedVelocity;
+
 	XMStoreFloat4(&m_v4Pos, vCurPos);
 }
 
