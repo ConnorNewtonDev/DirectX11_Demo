@@ -24,8 +24,6 @@ public:
 	XMFLOAT4 m_v4Pos; // World position
 	CommonMesh* s_pNodeMesh = NULL;
 	XMMATRIX GetNodeWorldMatrix() { return m_mNodeWorldMatrix; }
-	XMVECTOR GetNodeWorldRotation(XMVECTOR& parentRotation);
-	XMVECTOR GetNodeWorldPosition(XMVECTOR& parentPosition);
 };
 
 #endif

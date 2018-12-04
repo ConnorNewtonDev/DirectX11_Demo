@@ -14,6 +14,7 @@ public:
 	static void LoadResources(void);
 	static void ReleaseResources(void);
 	void Update();
+	bool DestroyTime();
 	void UpdateMatrices(void);
 	
 private:
@@ -24,6 +25,9 @@ private:
 
 
 	//---- Variables ----//
+	float fLifeTime = 5;
+	float fcurLifeTime = 0.0f;
+
 	static CommonMesh* s_pBulletMesh;
 	static bool s_bResourcesReady;
 	bool positioned = false;
@@ -35,11 +39,6 @@ private:
 	NodeT* spawnParent;
 	XMFLOAT4 m_v4Rot; // Euler rotation angles
 	XMFLOAT4 m_v4Pos; // World position
-	
-
-public:
-
-
 };
 
 #endif

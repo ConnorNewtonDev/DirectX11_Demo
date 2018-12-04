@@ -10,6 +10,7 @@ Robot::~Robot()
 {
 }
 
+//Step through the vector of robotNodes and release.
 void Robot::ReleaseResources()
 {
 	for (int i = 0; i < robotNodes.size(); i++)
@@ -17,7 +18,8 @@ void Robot::ReleaseResources()
 		robotNodes[i]->ReleaseResources();
 	}
 }
-
+//Adds robot components to the robotNodes vector.
+//NodeT takes in (xPos, yPos, zPos, YRot, Filepath, parent<NodeT>).
 void Robot::LoadNodes(float fX, float fY, float fZ, float fRotY)
 {
 	//Root 0
@@ -54,6 +56,7 @@ void Robot::LoadNodes(float fX, float fY, float fZ, float fRotY)
 	robotNodes.push_back(new NodeT(-0.199911f / 10, -36.799995f / 10, 0.000039f / 10, 0.0f, "Resources/Robot/right_ankle.x", robotNodes[14]));
 }
 
+//Step through the vector of robotNodes and call their draw.
 void Robot::Draw(void)
 {
 	for (int i = 0; i < robotNodes.size(); i++)
@@ -67,6 +70,7 @@ void Robot::Update()
 	UpdateMatrices();
 }
 
+//Step through the vector of robotNodes and update their matricies.
 void Robot::UpdateMatrices()
 {
 	for (int i = 0; i < robotNodes.size(); i++)

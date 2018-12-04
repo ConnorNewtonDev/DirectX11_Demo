@@ -1,20 +1,14 @@
 ﻿  Aeroplane.cpp
-f:\repos\plane_assignment-master\hierarchy\bullet.h(30): warning C4324: 'Bullet': structure was padded due to alignment specifier
-f:\repos\plane_assignment-master\hierarchy\aeroplane.h(49): warning C4324: 'Aeroplane': structure was padded due to alignment specifier
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(19): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(21): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(23): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(25): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(47): warning C4018: '<': signed/unsigned mismatch
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(200): warning C4316: 'Bullet': object allocated on the heap may not be aligned 16
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(212): warning C4018: '<': signed/unsigned mismatch
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(221): warning C4018: '<': signed/unsigned mismatch
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(229): warning C4018: '<': signed/unsigned mismatch
-f:\repos\plane_assignment-master\hierarchy\aeroplane.cpp(235): warning C4018: '<': signed/unsigned mismatch
-  Application.cpp
-f:\repos\plane_assignment-master\hierarchy\bullet.h(30): warning C4324: 'Bullet': structure was padded due to alignment specifier
-f:\repos\plane_assignment-master\hierarchy\aeroplane.h(49): warning C4324: 'Aeroplane': structure was padded due to alignment specifier
-f:\repos\plane_assignment-master\hierarchy\robot.h(35): warning C4324: 'Robot': structure was padded due to alignment specifier
-  Generating Code...
-  Hierarchy.vcxproj -> F:\Repos\Plane_Assignment-master\Debug\Hierarchy.exe
-  Hierarchy.vcxproj -> F:\Repos\Plane_Assignment-master\Debug\Hierarchy.pdb (Partial PDB)
+f:\repo\hierarchy\bullet.h(34): warning C4324: 'Bullet': structure was padded due to alignment specifier
+f:\repo\hierarchy\aeroplane.h(49): warning C4324: 'Aeroplane': structure was padded due to alignment specifier
+f:\repo\hierarchy\aeroplane.cpp(19): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\aeroplane.cpp(21): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\aeroplane.cpp(23): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\aeroplane.cpp(25): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\aeroplane.cpp(46): warning C4018: '<': signed/unsigned mismatch
+f:\repo\hierarchy\aeroplane.cpp(198): warning C4316: 'Bullet': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\aeroplane.cpp(211): warning C4018: '<': signed/unsigned mismatch
+f:\repo\hierarchy\aeroplane.cpp(225): warning C4018: '<': signed/unsigned mismatch
+f:\repo\hierarchy\aeroplane.cpp(234): warning C4018: '<': signed/unsigned mismatch
+f:\repo\hierarchy\aeroplane.cpp(240): warning C4018: '<': signed/unsigned mismatch
+  Hierarchy.vcxproj -> F:\Repo\Debug\Hierarchy.exe

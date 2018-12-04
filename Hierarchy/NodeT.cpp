@@ -7,9 +7,8 @@ NodeT::NodeT(float fX, float fY, float fZ, float fRotY, std::string filePath, No
 	if (filePath != "")
 		LoadResources(filePath);
 
-
-
 	parent = nParent;
+	//Set position & rotation to values passed in.
 	m_v4Rot = XMFLOAT4(0.0f, fRotY, 0.0f, 0.0f);
 	m_v4Pos = XMFLOAT4(fX, fY, fZ, 0.0f);
 }
@@ -21,7 +20,6 @@ NodeT::~NodeT()
 
 void NodeT::LoadResources(std::string filePath)
 {
-
 	const char* path = filePath.c_str();
 	s_pNodeMesh = CommonMesh::LoadFromXFile(Application::s_pApp, path);
 }
@@ -38,27 +36,6 @@ void NodeT::Draw(void)
 		s_pNodeMesh->Draw();
 }
 
-XMVECTOR NodeT::GetNodeWorldPosition(XMVECTOR& parentMatrix)
-{	
-	if (parent != NULL)
-	{
-		XMVECTOR temp = parent->GetNodeWorldPosition(XMLoadFloat4(&m_v4Pos));
-		return parentMatrix + temp;
-	}
-	return  XMLoadFloat4(&m_v4Pos) + parentMatrix;
-	
-}
-
-XMVECTOR NodeT::GetNodeWorldRotation(XMVECTOR& parentMatrix)
-{
-	if (parent != NULL)
-	{
-		XMVECTOR temp = parent->GetNodeWorldRotation(XMLoadFloat4(&m_v4Rot));
-		return parentMatrix + temp;
-	}
-	return  XMLoadFloat4(&m_v4Rot) + parentMatrix;
-}
-
 void NodeT::UpdateMatrices()
 {
 	XMMATRIX mRotX, mRotY, mRotZ, mTrans;
@@ -69,6 +46,7 @@ void NodeT::UpdateMatrices()
 	mTrans = XMMatrixTranslationFromVector(XMLoadFloat4(&m_v4Pos));
 
 	// Then concatenate the matrices and parent
+	// Check if parent is null as to not try and pull from a null pointer.
 	if (parent != NULL)
 	{
 		m_mNodeWorldMatrix = mRotX * mRotY * mRotZ * mTrans * parent->GetNodeWorldMatrix();

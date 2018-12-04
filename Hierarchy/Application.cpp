@@ -60,6 +60,7 @@ void Application::HandleUpdate()
 {
 	m_rotationAngle += .01f;
 
+	//Plane will be spawned with the engine off, check for the input "S" to start the engine.
 	if (this->IsKeyPressed('S') && !m_pAeroplane->bEngineOn)
 		m_pAeroplane->bEngineOn = true;
 

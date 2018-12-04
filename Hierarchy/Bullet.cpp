@@ -7,16 +7,17 @@ bool Bullet::s_bResourcesReady = false;
 //---- Public ----//
 Bullet::Bullet(NodeT* spawner, XMVECTOR inheritedVelocity)
 {
+	//Initialise values.
 	m_mBulletWorldMatrix = XMMatrixIdentity();
+	m_v4Pos = XMFLOAT4(0, 0, 0, 0);
+	m_v4Rot = XMFLOAT4(0, 0, 0, 0);
+	m_vForwardVector = XMVectorZero();
 	spawnParent = spawner;
 	m_vInheritedVelocity = inheritedVelocity;
-	m_v4Pos = XMFLOAT4(0,0,0,0);
-	m_v4Rot = XMFLOAT4(0,0,0,0);
-
-	m_vForwardVector = XMVectorZero();
+	
+	//Set the bullet to it's spawn position.
 	SetWorldPosition();
 	LoadResources();
-	UpdateMatrices();
 	fBulletSpeed = 2.5f;
 
 }
@@ -48,38 +49,50 @@ void Bullet::ReleaseResources(void)
 
 void Bullet::MoveForward()
 {
-
-
+	//Increment the current position forward.
 	XMVECTOR vCurPos = XMLoadFloat4(&m_v4Pos);
 	vCurPos += m_vForwardVector * fBulletSpeed;
-
-	//Need to find a way to Inverse X axis?
-
+	//Add the inherited velocity from the plane.
 	vCurPos += m_vInheritedVelocity;
-
+	//Store the new value & update.
 	XMStoreFloat4(&m_v4Pos, vCurPos);
 	UpdateMatrices();
 }
 
+// Used only to set the initial position by decomposing the parent's world matrix.
+// These values will then be set as the bullet's position & rotation.
 void Bullet::SetWorldPosition()
 {
-
-	XMStoreFloat4(&m_v4Pos, spawnParent->GetNodeWorldMatrix().r[3]);
-
 	XMVECTOR scale, rot, trans;
+	// Decompose will save having to step through each parent.
 	XMMatrixDecompose(&scale, &rot, &trans, spawnParent->GetNodeWorldMatrix());
 
 	XMStoreFloat4(&m_v4Rot, rot);
+	XMStoreFloat4(&m_v4Pos, trans);
 
 }
 
+bool Bullet::DestroyTime()
+{
+	if (fcurLifeTime < fLifeTime)
+	{
+		fcurLifeTime += 0.05f;
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+// Updates the world matrix by taking scaling / translation / rotation from stored values that have been changed through update.
 void Bullet::UpdateMatrices(void)
 {
 	XMMATRIX mTrans, scale, mRot;
 
-	// Calculate m_mWorldMatrix for plane based on Euler rotation angles and position data.
-	mTrans = XMMatrixTranslationFromVector(XMLoadFloat4(&m_v4Pos));
+	// Calculate WorldMatrix for plane based on Euler rotation angles and position data.
 	scale = XMMatrixScaling(0.1f, 0.1f, 0.1f);
+	mTrans = XMMatrixTranslationFromVector(XMLoadFloat4(&m_v4Pos));
 	mRot = XMMatrixRotationQuaternion(XMLoadFloat4(&m_v4Rot));
 	m_mBulletWorldMatrix = scale * mRot *  mTrans;
 

@@ -43,14 +43,11 @@ Aeroplane::~Aeroplane(void)
 void Aeroplane::UpdateMatrices(void)
 {	
 	m_vForwardVector = XMVector3TransformNormal(forward, components[0]->GetNodeWorldMatrix());
-	//Components
 	for (int i = 0; i < components.size(); i++)
 	{
 		components[i]->UpdateMatrices();
 	}
-
-
-
+		
 	UpdateCamera();
 	
 }
@@ -89,6 +86,7 @@ void Aeroplane::UpdateCamera()
 
 void Aeroplane::Update(bool bPlayerControl)
 {
+	// If the engine is off the plane will not move or be controllable.
 	if (bEngineOn)
 	{
 		//---- Player Controls ----//
@@ -174,25 +172,25 @@ void Aeroplane::Update(bool bPlayerControl)
 		components[1]->m_v4Rot.z += 100 * m_fSpeed;
 		components[2]->m_v4Rot.y += 0.1f;
 
-		// Tilt gun up and down as turret rotates
 	}
+
+	// Tilt gun up and down as turret rotates
 	components[3]->m_v4Rot.x = (sin((float)XMConvertToRadians(components[2]->m_v4Rot.y * 4.0f)) * 10.0f) - 10.0f;
 
 	UpdateMatrices();
-
 
 	// Move Forward
 	XMVECTOR vCurrPos = DirectX::XMLoadFloat4(&components[0]->m_v4Pos);
 	vCurrPos += m_vForwardVector * m_fSpeed;
 	XMStoreFloat4(&components[0]->m_v4Pos, vCurrPos);
 	
-	
-
 	UpdateBullets();
 
 
 }
 
+// Attempt to instantiate the Bullet, though must first check if the cooldown timer is at 0.
+// If the Bullet can be instantiated then also set the timer back to the cooldown.
 void Aeroplane::AttemptFire()
 {
 	if (fCurTimer <= 0.0f)
@@ -203,6 +201,7 @@ void Aeroplane::AttemptFire()
 
 }
 
+//Update the bullet cooldown timer then step through to update each bullet.
 void Aeroplane::UpdateBullets()
 {
 	//Timer
@@ -212,10 +211,15 @@ void Aeroplane::UpdateBullets()
 	for (int i = 0; i < bullets.size(); i++)
 	{
 		bullets[i]->Update();
+		if (bullets[i]->DestroyTime())
+		{
+			bullets.erase(bullets.begin() + i);
+			bullets.shrink_to_fit();
+		}
 	}
 
 }
-
+//Step through components to call their release.
 void Aeroplane::ReleaseResources(void)
 {
 	for (int i = 0; i < components.size(); i++)
@@ -224,6 +228,7 @@ void Aeroplane::ReleaseResources(void)
 	}
 }
 
+//Step through both components & bullets and call their draw.
 void Aeroplane::Draw(void)
 {
 	for (int i = 0; i < components.size(); i++)
