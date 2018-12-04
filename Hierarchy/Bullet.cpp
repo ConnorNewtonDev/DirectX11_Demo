@@ -29,6 +29,7 @@ Bullet::~Bullet()
 void Bullet::Update()
 {
 	MoveForward();
+	
 }
 
 void Bullet::Draw(void)
@@ -72,11 +73,12 @@ void Bullet::SetWorldPosition()
 
 }
 
+// Check if the time the bullet has been alive, then return true if it has exceeded its max life time.
 bool Bullet::DestroyTime()
 {
-	if (fcurLifeTime < fLifeTime)
+	if (fTimeAlive < fLifeTime)
 	{
-		fcurLifeTime += 0.05f;
+		fTimeAlive += 0.05f;
 		return false;
 	}
 	else

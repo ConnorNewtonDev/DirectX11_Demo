@@ -21,11 +21,7 @@ public:
 	void Update(); // Player only has control of plane when flag is set
 private:
 	void UpdateMatrices(void);
-
-	static CommonMesh* s_pPlaneMesh; // Only one plane mesh for all instances
-	static CommonMesh* s_pPropMesh; // Only one propellor mesh for all instances
-	static CommonMesh* s_pTurretMesh; // Only one turret mesh for all instances
-	static CommonMesh* s_pGunMesh; // Only one gun mesh for all instances
+	void Rotate(int movement);
 
 	
 public:

@@ -67,7 +67,26 @@ void Robot::Draw(void)
 
 void Robot::Update()
 {
+	//Allow player to rotate the robot.
+	if (GetAsyncKeyState('J') && 0x8000)
+	{
+		Rotate(-1);
+	}
+	else if(GetAsyncKeyState('K') && 0x8000)
+	{
+		Rotate(1);
+	}
 	UpdateMatrices();
+}
+
+void Robot::Rotate(int movement)
+{
+	for (int i = 0; i < robotNodes.size(); i++)
+	{
+		//Limits robot movement as to not cut through itself too extreme
+		if(robotNodes[i]->m_v4Rot.y + movement < 90 && robotNodes[i]->m_v4Rot.y + movement > -90)
+			robotNodes[i]->m_v4Rot.y += movement;
+	}
 }
 
 //Step through the vector of robotNodes and update their matricies.

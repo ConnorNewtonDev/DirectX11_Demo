@@ -4,7 +4,8 @@
 //					hierarchical components stored internally within the class.
 // Module:			Real-Time 3D Techniques for Games
 // Created:			Jake - 2010-2011
-// Notes:
+// Notes:			Additonal Inputs -> Press "S" to start the engine of the plane.
+//									 -> Press "J" or "K" to rotate the robot's nodes along Y 
 //*********************************************************************************************
 
 #include "Aeroplane.h"
@@ -92,7 +93,7 @@ void Aeroplane::Update(bool bPlayerControl)
 		//---- Player Controls ----//
 		if (bPlayerControl)
 		{
-			if (GetAsyncKeyState('R') && 0x8000)
+			if (GetAsyncKeyState(' ') && 0x8000)
 			{
 				AttemptFire();
 			}

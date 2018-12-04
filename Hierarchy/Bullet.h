@@ -26,7 +26,7 @@ private:
 
 	//---- Variables ----//
 	float fLifeTime = 5;
-	float fcurLifeTime = 0.0f;
+	float fTimeAlive = 0.0f;
 
 	static CommonMesh* s_pBulletMesh;
 	static bool s_bResourcesReady;

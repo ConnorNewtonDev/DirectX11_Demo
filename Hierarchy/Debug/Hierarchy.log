@@ -1,14 +1,25 @@
-﻿  Aeroplane.cpp
-f:\repo\hierarchy\bullet.h(34): warning C4324: 'Bullet': structure was padded due to alignment specifier
-f:\repo\hierarchy\aeroplane.h(49): warning C4324: 'Aeroplane': structure was padded due to alignment specifier
-f:\repo\hierarchy\aeroplane.cpp(19): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repo\hierarchy\aeroplane.cpp(21): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repo\hierarchy\aeroplane.cpp(23): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repo\hierarchy\aeroplane.cpp(25): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
-f:\repo\hierarchy\aeroplane.cpp(46): warning C4018: '<': signed/unsigned mismatch
-f:\repo\hierarchy\aeroplane.cpp(198): warning C4316: 'Bullet': object allocated on the heap may not be aligned 16
-f:\repo\hierarchy\aeroplane.cpp(211): warning C4018: '<': signed/unsigned mismatch
-f:\repo\hierarchy\aeroplane.cpp(225): warning C4018: '<': signed/unsigned mismatch
-f:\repo\hierarchy\aeroplane.cpp(234): warning C4018: '<': signed/unsigned mismatch
-f:\repo\hierarchy\aeroplane.cpp(240): warning C4018: '<': signed/unsigned mismatch
+﻿  Robot.cpp
+f:\repo\hierarchy\robot.h(31): warning C4324: 'Robot': structure was padded due to alignment specifier
+f:\repo\hierarchy\robot.cpp(16): warning C4018: '<': signed/unsigned mismatch
+f:\repo\hierarchy\robot.cpp(26): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(28): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(30): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(32): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(34): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(36): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(38): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(40): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(42): warning C4305: 'argument': truncation from 'double' to 'float'
+f:\repo\hierarchy\robot.cpp(42): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(44): warning C4305: 'argument': truncation from 'double' to 'float'
+f:\repo\hierarchy\robot.cpp(44): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(46): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(48): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(50): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(52): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(54): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(56): warning C4316: 'NodeT': object allocated on the heap may not be aligned 16
+f:\repo\hierarchy\robot.cpp(62): warning C4018: '<': signed/unsigned mismatch
+f:\repo\hierarchy\robot.cpp(83): warning C4018: '<': signed/unsigned mismatch
+f:\repo\hierarchy\robot.cpp(94): warning C4018: '<': signed/unsigned mismatch
   Hierarchy.vcxproj -> F:\Repo\Debug\Hierarchy.exe
